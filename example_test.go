@@ -23,7 +23,7 @@ func ExampleAvailableMemory() {
 	fmt.Printf("Available system memory: %d\n", memory.AvailableMemory())
 }
 
-func TestNonZero(t *testing.T) {
+func RunExamples(t *testing.T) {
 	ExampleAvailableMemory()
 	ExampleTotalMemory()
 	ExampleFreeMemory()

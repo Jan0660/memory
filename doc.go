@@ -24,16 +24,20 @@ func FreeMemory() uint64 {
 }
 
 // FreeSwap returns the free amount of swap(page file on Windows) in bytes.
+//
+// If free swap size could not be determined, then 0 is returned.
 func FreeSwap() uint64 {
 	return sysFreeSwap()
 }
 
 // TotalSwap returns the total amount of swap(page file on Windows) in bytes.
+//
+// If total swap size could not be determined, then 0 is returned.
 func TotalSwap() uint64 {
 	return sysTotalSwap()
 }
 
-// AvailableMemory returns free + buffer/cache memory on Linux, on other platforms it's just free memory.
+// AvailableMemory returns free + buffer/cache memory on Linux, on other platforms it's just FreeMemory().
 func AvailableMemory() uint64 {
 	return sysAvailableMemory()
 }
