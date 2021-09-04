@@ -1,3 +1,4 @@
+//go:build linux
 // +build linux
 
 package memory
@@ -26,4 +27,42 @@ func sysFreeMemory() uint64 {
 	// uint32 instead of uint64.
 	// So we always convert to uint64 to match signature.
 	return uint64(in.Freeram) * uint64(in.Unit)
+}
+
+// Not implemented
+func sysTotalSwap() uint64 {
+	in := &syscall.Sysinfo_t{}
+	err := syscall.Sysinfo(in)
+	if err != nil {
+		return 0
+	}
+	// If this is a 32-bit system, then these fields are
+	// uint32 instead of uint64.
+	// So we always convert to uint64 to match signature.
+	return uint64(in.Totalswap) * uint64(in.Unit)
+}
+
+// Not implemented
+func sysFreeSwap() uint64 {
+	in := &syscall.Sysinfo_t{}
+	err := syscall.Sysinfo(in)
+	if err != nil {
+		return 0
+	}
+	// If this is a 32-bit system, then these fields are
+	// uint32 instead of uint64.
+	// So we always convert to uint64 to match signature.
+	return uint64(in.Freeswap) * uint64(in.Unit)
+}
+
+func sysAvailableMemory() uint64 {
+	in := &syscall.Sysinfo_t{}
+	err := syscall.Sysinfo(in)
+	if err != nil {
+		return 0
+	}
+	// If this is a 32-bit system, then these fields are
+	// uint32 instead of uint64.
+	// So we always convert to uint64 to match signature.
+	return (uint64(in.Freeram) + uint64(in.Bufferram)) * uint64(in.Unit)
 }

@@ -9,4 +9,7 @@ func TestNonZero(t *testing.T) {
 	if FreeMemory() == 0 {
 		t.Fatal("FreeMemory returned 0")
 	}
+	if AvailableMemory() == 0 {
+		t.Fatal("AvailableMemory returned 0")
+	}
 }

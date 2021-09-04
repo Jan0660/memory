@@ -22,3 +22,16 @@ func TotalMemory() uint64 {
 func FreeMemory() uint64 {
 	return sysFreeMemory()
 }
+
+func FreeSwap() uint64 {
+	return sysFreeSwap()
+}
+
+func TotalSwap() uint64 {
+	return sysTotalSwap()
+}
+
+// AvailableMemory returns free + buffer/cache memory on Linux, on other platforms it's just free memory.
+func AvailableMemory() uint64 {
+	return sysAvailableMemory()
+}
