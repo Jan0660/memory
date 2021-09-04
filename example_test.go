@@ -2,6 +2,7 @@ package memory_test
 
 import (
 	"fmt"
+	"testing"
 
 	"github.com/jan0660/memory"
 )
@@ -13,11 +14,19 @@ func ExampleFreeMemory() {
 	fmt.Printf("Free system memory: %d\n", memory.FreeMemory())
 }
 func ExampleTotalSwap() {
-	fmt.Printf("Free system memory: %d\n", memory.TotalSwap())
+	fmt.Printf("Total system swap: %d\n", memory.TotalSwap())
 }
 func ExampleFreeSwap() {
-	fmt.Printf("Free system memory: %d\n", memory.FreeSwap())
+	fmt.Printf("Free system swap: %d\n", memory.FreeSwap())
 }
 func ExampleAvailableMemory() {
-	fmt.Printf("Free system memory: %d\n", memory.AvailableMemory())
+	fmt.Printf("Available system memory: %d\n", memory.AvailableMemory())
+}
+
+func TestNonZero(t *testing.T) {
+	ExampleAvailableMemory()
+	ExampleTotalMemory()
+	ExampleFreeMemory()
+	ExampleTotalSwap()
+	ExampleFreeSwap()
 }
