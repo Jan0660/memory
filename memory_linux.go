@@ -8,7 +8,6 @@ import (
 	"syscall"
 
 	"bufio"
-	"log"
 	"os"
 	"strings"
 )
@@ -64,15 +63,11 @@ func sysFreeSwap() uint64 {
 }
 
 func sysAvailableMemory() uint64 {
+	// can't use Bufferram from syscall here because it just gives the wrong number :shrug:
 	f, err := os.Open("/proc/meminfo")
 	if err != nil {
-		log.Fatal(err)
+		return 0
 	}
-	defer func() {
-		if err = f.Close(); err != nil {
-			log.Fatal(err)
-		}
-	}()
 	s := bufio.NewScanner(f)
 	for s.Scan() {
 		// credit: https://github.com/shirou/gopsutil/blob/master/mem/mem_linux.go#L68

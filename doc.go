@@ -23,10 +23,12 @@ func FreeMemory() uint64 {
 	return sysFreeMemory()
 }
 
+// FreeSwap returns the free amount of swap(page file on Windows) in bytes.
 func FreeSwap() uint64 {
 	return sysFreeSwap()
 }
 
+// TotalSwap returns the total amount of swap(page file on Windows) in bytes.
 func TotalSwap() uint64 {
 	return sysTotalSwap()
 }
